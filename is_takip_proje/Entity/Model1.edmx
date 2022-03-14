@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -66,6 +66,7 @@
           <Property Name="Tel" Type="nvarchar" MaxLength="20" />
           <Property Name="Gorsel" Type="nvarchar" MaxLength="100" />
           <Property Name="Departman" Type="int" />
+          <Property Name="Durum" Type="bit" />
         </EntityType>
         <Association Name="FK_tbl_gorev_detaylar_tbl_gorevler">
           <End Role="tbl_gorevler" Type="Self.tbl_gorevler" Multiplicity="0..1" />
@@ -139,8 +140,7 @@
             <End Role="tbl_personel" EntitySet="tbl_personel" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbisTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -213,6 +213,7 @@
           <NavigationProperty Name="tbl_departmanlar" Relationship="Self.FK_tbl_personel_tbl_departmanlar" FromRole="tbl_personel" ToRole="tbl_departmanlar" />
           <NavigationProperty Name="tbl_gorevler" Relationship="Self.FK_tbl_gorevler_tbl_personel" FromRole="tbl_personel" ToRole="tbl_gorevler" />
           <NavigationProperty Name="tbl_gorevler1" Relationship="Self.FK_tbl_gorevler_tbl_personel1" FromRole="tbl_personel" ToRole="tbl_gorevler" />
+          <Property Name="Durum" Type="Boolean" />
         </EntityType>
         <Association Name="FK_tbl_personel_tbl_departmanlar">
           <End Role="tbl_departmanlar" Type="Self.tbl_departmanlar" Multiplicity="0..1" />
@@ -350,6 +351,7 @@
           <EntitySetMapping Name="tbl_personel">
             <EntityTypeMapping TypeName="DbisTakipModel.tbl_personel">
               <MappingFragment StoreEntitySet="tbl_personel">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="Soyad" ColumnName="Soyad" />
